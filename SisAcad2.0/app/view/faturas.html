@@ -1,0 +1,181 @@
+  
+<html lang="en">
+    <head>
+        <title>SisAcad</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="../assets/icofont.min.css">
+        <link rel="stylesheet" type="text/css" href="../assets/comun.css">
+        <link rel="stylesheet" type="text/css" href="../assets/paginas.css">
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                    <li class="nav-item active">
+                        <a class="navbar-brand" href="http://localhost/SisAcad2.0/dashboard"> <div>
+                                <i class="icofont-muscle mr-2" ></i>
+                                <span class="font-weight-light">Sis</span>
+                                <span class="font-weight-bold">Acad</span>
+                                <i class="icofont-gym ml-2"></i>
+                            </div></a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="" id="navbardrop" data-toggle="dropdown">
+                            Clintes
+                        </a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="http:/SisAcad2.0/dashboard/cadCliente">Cadastrar</a>
+                            <a class="dropdown-item" href="http:/SisAcad2.0/dashboard/telaCliente">Listar</a>
+                        </div>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="http:/SisAcad2.0/dashboard/telaCaixa">Caixa</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="http:/SisAcad2.0/dashboard/matriculados">Matriculados</a>
+                    </li>
+
+                </ul>
+
+                <form class="form-inline my-2 my-lg-0">
+                    <a href="http:/SisAcad2.0/admin/logout" ><button type="button" class="btn btn-dark">Sair</button></a>
+                </form>
+            </div>
+        </nav>
+        <div class="jumbotron">
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="row"  class="table-light">Cliente </th>
+
+                        <th scope="row"  class="table-light">Plano : </th>
+
+                        <th scope="row"  class="table-light">Valor: R$ </th>
+                        <td class="table-light"></td>
+                        <td class="table-light"></td>
+                        <td class="table-light"></td>
+
+
+
+                    </tr>
+
+                    <tr>
+                        <th scope="col" class="table-warning">Data e Hora</th>
+                        <th scope="col" class="table-warning">Modalidades</th>
+                        <th scope="col" class="table-warning">valor </th>  
+
+                        <th scope="col" class="table-warning">Status Modalidades </th>
+                        <th scope="col" class="table-warning">Status Pagamento </th>
+                        <th scope="col" class="table-warning">Operador</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    {%for c in faturas%}
+                    <tr>
+                        <td class="table-info">{{c.usuario}}</td>
+                        <td class="table-info">{{c.cliente}}</td>
+                        <td class="table-info">{{c.valorParcela}}</td>
+
+                        <td class="table-info"></td>
+                        <td class="table-info"></td>
+
+                        <td class="table-info"></td>   
+                        {%endfor%}
+                    <tr>
+                        <th scope="row"  class="table-info">Mensalidade</th>
+                        <td class="table-info"></td>
+                        <td class="table-info"></td>
+                        <td class="table-info"></td>
+                        <td class="table-info"></td>
+                        <td class="table-info"></td>
+
+                    </tr>
+                </tbody>
+            </table>
+            <div class="form-row text-center">
+                <div class="col-12">
+                    <button type="submit" class="btn btn-success" data-toggle="modal" data-target="#exampleModalCenter">Receber</button>
+                    <a class="btn btn-primary" href="http://localhost/SisAcad2.0/dashboard/editarMatricula&id={{id}}" role="button">Editar Matricula</a>
+                </div>
+            </div>
+
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitle">Mensalidade</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <h3>Forma de Pagamento</h3>
+                            <form class="form-inline" action="http://localhost/SisAcad2.0/dashboard/Cadpagamento&id={{id}}" method="post">
+                                <div class="form-group col-md-3">   
+                                    <select class="custom-select my-1 mr-sm-2" name="pag" id="inlineFormCustomSelectPref" required >
+                                        <option value="5">Dinheiro</option>
+                                        <option value="6">Cartão</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">R$</div>
+
+                                        <div class="input-group-prepend">
+                                            <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" name="mensal" value="{{mensalidade}}">
+                                        </div> 
+                                        <input type="hidden" class="form-control" id="inputCity" name="id" value="{{id}}">
+                                        <input type="hidden" class="form-control" id="inputCity" name="usuario" value="{{id_user}}">
+                                        <input type="hidden" class="form-control" id="inputCity" name="nrParcelas" value="{{nrParcelas}}">
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="example-date-input" class="col-2 col-form-label">Data</label>
+
+                                    <input class="form-control" type="date" value="" name="datapag" required="required">
+                                </div>
+                                 <div class="form-group col-md-3">  
+                                      <label for="example-date-input" class="col-2 col-form-label">Vencimento</label>
+                                    <select class="custom-select my-1 mr-sm-2" name="dia" id="inlineFormCustomSelectPref" required >
+                                        <option value="5">5</option>
+                                        <option value="10">10</option>
+                                        <option value="15">15</option>
+                                        <option value="20">20</option>
+                                        <option value="25">25</option>
+                                    </select>
+                                 </div>
+                           
+                        </div>  
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Voltar</button>
+                            <button type="submit" class="btn btn-primary">Salvar Pagamento</button>
+                        </div>
+                        </form>  
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- Footer -->
+        <footer  class="navbar-fixed-bottom">
+            <div class="text-center fixed-bottom">
+                {{name_user}} 
+            </div>
+        </footer>
+    </body>
+</html>
+
+

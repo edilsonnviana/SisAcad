@@ -1,0 +1,43 @@
+{{ include('admin.html', sandboxed = true) }}
+<link rel="stylesheet" type="text/css" href="../assets/icofont.min.css">
+<link rel="stylesheet" type="text/css" href="../assets/comun.css">
+<link rel="stylesheet" type="text/css" href="../assets/paginas.css">
+<script src="https://code.jquery.com/jquery-3.1.1.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.quicksearch/2.3.1/jquery.quicksearch.js"></script>
+<script>
+    $('input#txt_consulta').quicksearch('table#tabela tbody tr');
+</script>
+<form method="post" action="http://localhost/SisAcad2.0/admin/telades">
+    <div class="container">
+
+        <table class="table table-dark table-hover">
+            <h2>Funcionarios</h2>
+            <input name="consulta" id="txt_consulta" placeholder="Consultar" type="text" class="form-control">
+            <div class="form-group input-group">
+            </div>
+            <thead>
+                <tr> 
+                    <th>Nome</th>
+                    <th>Cargo</th>
+                    <th> Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {%for c in usuarios%}
+                <tr>
+                    <td>{{c.nomeUsuario}}</td>
+                    <td>{{c.descricao}}</td>
+                    <td> <a href="http://localhost/SisAcad2.0/admin/telaEditDES&id={{c.idusuario}}" class="btn btn-success" role="button">Habilitar</a>
+                </tr>
+                        {% else %}
+            <div class="alert alert-danger" role="alert">
+                Não ha usuario desabilitado !
+              
+            </div>
+                {%endfor%}
+                <tr>
+            </tbody>
+        </table>
+    </div>
+</form>

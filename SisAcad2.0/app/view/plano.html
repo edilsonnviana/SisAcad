@@ -1,0 +1,37 @@
+{{ include('admin.html', sandboxed = true) }}
+<link rel="stylesheet" type="text/css" href="../assets/icofont.min.css">
+<link rel="stylesheet" type="text/css" href="../assets/comun.css">
+<link rel="stylesheet" type="text/css" href="../assets/paginas.css">
+
+<form method="post" action="http://localhost/SisAcad2.0/admin/telades">
+    <div class="container">
+
+        <table class="table table-dark table-hover">
+            <h2>Planos</h2>
+
+            <thead class="thead-light">
+                <tr> 
+                    <th>Nome</th>
+                    <th>Valor</th>
+                    <th>Modo</th>
+                    <th colspan="2"> Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {%for p in plano%}
+                <tr>
+                    <td>{{p.nome}}</td>
+                    <td>{{p.valor}}</td>
+                    <td>{{p.descricao}}</td>
+
+                    <td> <a href="http://localhost/SisAcad2.0/admin/telaEditPlano&id={{p.idplano}}" class="btn btn-info" role="button">Edtar</a>
+                        <a href="http://localhost/SisAcad2.0/admin/inativarPlano&id={{p.idplano}}" class="btn btn-danger" role="button">Inativar</a>
+                        <a href="http://localhost/SisAcad2.0/admin/ativarPlano&id={{p.idplano}}" class="btn btn-success" role="button">Ativar</a>
+                    </td>
+                </tr>
+                {%endfor%}
+                <tr>
+            </tbody>
+        </table>
+    </div>
+</form>

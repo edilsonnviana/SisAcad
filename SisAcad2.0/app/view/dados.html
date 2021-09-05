@@ -1,0 +1,48 @@
+
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">id</th>
+                    <th scope="col">Cliente</th>
+                    <th scope="col">Usuario</th>
+                    <th scope="col">Numero de Parcelas</th>
+                    <th scope="col">Vencimento</th>
+                    <th scope="col">Data de Nascimento</th>
+                    <th scope="col">Valor da Parcela</th>
+                    <th scope="col">Situação</th>
+                    <th scope="col">Data pagamento</th>
+                    <th scope="col">Forma de Pagamento</th>
+                    <th scope="col">Parcela</th>
+                    <th scope="col">Valor Pago</th>
+                    <th scope="col">Descrição</th>
+                </tr>
+            </thead>
+            <tbody>
+                {%for d in dados%}
+                 <tr>
+                    <td>{{d.id}}</td>
+                    <td>{{d.cliente}}</td>
+                    <td>{{d.usuario}}</td>
+                    <td>{{d.parcelas}}</td>
+                    <td>{{d.vencimento}}</td>
+                    <td>{{d.dn}}</td>
+                    <td>{{d.valor}}</td>
+                    <td>{{d.situacao}}</td>
+                    <td>{{d.dataPagamento}}</td>
+                    <td>{{d.forma}}</td>
+                    <td>{{d.parc}}</td>
+                    <td>{{d.pago}}</td>
+                    <td>{{d.modo}}</td>
+                </tr>
+                {%endfor%}
+            </tbody>
+        </table>
+    </body>
+</html>

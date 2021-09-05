@@ -1,0 +1,122 @@
+ 
+<html lang="en">
+    <head>
+        <title>SisAcad</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="../assets/icofont.min.css">
+        <link rel="stylesheet" type="text/css" href="../assets/comun.css">
+        <link rel="stylesheet" type="text/css" href="../assets/paginas.css">
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                    <li class="nav-item active">
+                        <a class="navbar-brand" href="http://localhost/SisAcad2.0/dashboard"> <div>
+                                <i class="icofont-muscle mr-2" ></i>
+                                <span class="font-weight-light">Sis</span>
+                                <span class="font-weight-bold">Acad</span>
+                                <i class="icofont-gym ml-2"></i>
+                            </div></a>
+                    </li>
+                      <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="" id="navbardrop" data-toggle="dropdown">
+                            Clintes
+                        </a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="http:/SisAcad2.0/dashboard/cadCliente">Cadastrar</a>
+                            <a class="dropdown-item" href="http:/SisAcad2.0/dashboard/telaCliente">Listar</a>
+                        </div>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="http:/SisAcad2.0/dashboard/telaCaixa">Caixa</a>
+                    </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="http:/SisAcad2.0/dashboard/matriculados">Matriculados</a>
+                   </li>
+                </ul>
+                <form class="form-inline my-2 my-lg-0">
+                    <a href="http:/SisAcad2.0/admin/logout" ><button type="button" class="btn btn-dark">Sair</button></a>
+                </form>
+            </div>
+        </nav>
+        <div class="jumbotron">
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+     
+      <th scope="col">Cliente :&nbsp {{nome}}</th>
+      <th scope="col">Plano cadastrado : &nbsp{{plano}}&nbsp{{idplano}}</th>
+      <th scope="col">Modalidades Cadastradas :       {% for m in modal%}
+      ({{m.descriModalidade}})|{{m.idmodalidades}}
+      {%endfor%} </th>
+    </tr>
+  </thead>
+ 
+</table>
+<form action="http://localhost/SisAcad2.0/dashboard/editarMatriculas" method="post">
+  <div class="form-row">
+      <label for="exampleFormControlSelect1">Modalidades&nbsp;&nbsp</label>
+                {% for  m in modalidades%}
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="modal[]" value="{{m.idmodalidades}}" id="defaultCheck1"/>
+                    <label class="form-check-label" for="defaultCheck1">
+                        {{m.descriModalidade}}&nbsp;&nbsp;&nbsp
+                    </label>
+                </div>
+                {%endfor%}
+  </div>
+    <hr/>
+    <div class="form-row">
+    <div class="form-group col-md-4">
+      <label for="inputEstado">Planos</label>
+      <select id="inputEstado" class="form-control" name="plano">
+        
+        {%for p in planos%}
+        <option value="{{p.idplano}}">{{p.descricao}}</option>
+        {%endfor%}
+      </select>
+    </div>
+
+  </div>
+     <div class="form-row text-center">
+                <div class="col-12">
+                    <button type="submit" class="btn btn-success">Editar Matricula</button>
+                </div>
+            </div>
+      <div class="form-group col-md-4">
+                    <input type="hidden" class="form-control" id="inputCity" name="cliente" value="{{id}}">
+                </div>
+                <div class="form-group col-md-4">
+                    <input type="hidden" class="form-control" id="inputCity" name="usuario" value="{{idusuario}}">
+                </div>
+       <div class="form-group col-md-4">
+                    <input type="hidden" class="form-control" id="inputCity" name="idplano" value="{{idplano}}">
+                </div>
+     <div class="form-group col-md-4">
+                    <input type="hidden" class="form-control" id="inputCity" name="idmodal" value="{% for m in modal%}
+                                                                                                  {{m.idmodalidades}}
+                                                                                                 {%endfor%} ">
+     </div>
+</form>
+        <!-- Footer -->
+        <footer  class="navbar-fixed-bottom">
+            <div class="text-center fixed-bottom">
+                {{name_user}}
+
+            </div>
+        </footer>
+    </body>
+</html>
+
+

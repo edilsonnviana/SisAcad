@@ -1,0 +1,123 @@
+  
+<html lang="en">
+    <head>
+        <title>SisAcad</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="../assets/icofont.min.css">
+        <link rel="stylesheet" type="text/css" href="../assets/comun.css">
+        <link rel="stylesheet" type="text/css" href="../assets/paginas.css">
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                    <li class="nav-item active">
+                        <a class="navbar-brand" href="http://localhost/SisAcad2.0/dashboard"> <div>
+                                <i class="icofont-muscle mr-2" ></i>
+                                <span class="font-weight-light">Sis</span>
+                                <span class="font-weight-bold">Acad</span>
+                                <i class="icofont-gym ml-2"></i>
+                            </div></a>
+                    </li>
+                             <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="" id="navbardrop" data-toggle="dropdown">
+                            Clintes
+                        </a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="http:/SisAcad2.0/dashboard/cadCliente">Cadastrar</a>
+                            <a class="dropdown-item" href="http:/SisAcad2.0/dashboard/telaCliente">Listar</a>
+                        </div>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="http:/SisAcad2.0/dashboard/telaCaixa">Caixa</a>
+                    </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="http:/SisAcad2.0/dashboard/matriculados">Matriculados</a>
+                   </li>
+
+                </ul>
+                <form class="form-inline my-2 my-lg-0">
+                    <a href="http:/SisAcad2.0/admin/logout" ><button type="button" class="btn btn-dark">Sair</button></a>
+                </form>
+            </div>
+        </nav>
+           <div class="jumbotron">
+            <form action="http://localhost/SisAcad2.0/dashboard/editarCliente" method="post" >
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="inputEmail4">Nome</label>
+                        <input type="text" class="form-control" id="inputEmail4" name="nome" value="{{nome}}">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="inputPassword4">Email</label>
+                        <input type="text" class="form-control" id="inputPassword4" name="email" value="{{email}}">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="inputPassword4">Endereço</label>
+                        <input type="text" class="form-control" id="inputPassword4" name="endereco" value="{{endereco}}">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="inputPassword4">Cpf</label>
+                        <input type="text" class="form-control" id="inputCity" name="cpf" value="{{cpf}}">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="inputCity">Telefone Fixo</label>
+                        <input type="number" class="form-control" id="inputCity" name="tel2" value="{{tel2}}">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="inputCity">Telefone</label>
+                        <input type="text" class="form-control" id="inputCity" name="tel" value="{{tel}}">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="inputEstado">Sexo</label>
+                        <select  id="inputEstado" class="form-control" name="sexo">
+                            <option selected name="sexo">{{sexo}}</option>
+                            <option name="sexo">Masculino</option>
+                            <option name="sexo">Feminino</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="inputCity">Data de Nascimento</label>
+                        <input type="text" class="form-control" id="inputCity" name="dtnasc" value="{{dtnasc}}">
+
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="inputCity">Gargo</label>
+                        <input class="form-control" type="text" value="{{descricao}}" readonly>
+                    </div>
+
+                    <div class="form-group col-md-4">
+
+                        <input type="hidden" class="form-control" id="inputCity" name="id" value="{{id}}">
+                    </div>
+
+                </div>
+                <div class="form-row text-center">
+                    <div class="col-12">
+                        <button type="submit" class="btn btn-primary">Editar</button>
+                    </div>
+                </div>
+            </form>
+        </div> 
+        <!-- Footer -->
+        <footer  class="navbar-fixed-bottom">
+            <div class="text-center fixed-bottom">
+
+            </div>
+        </footer>
+    </body>
+</html>
+
+

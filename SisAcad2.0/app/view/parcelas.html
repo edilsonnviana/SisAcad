@@ -1,0 +1,148 @@
+{{ include('dashboard.html', sandboxed = true) }}
+<link rel="stylesheet" type="text/css" href="../assets/icofont.min.css">
+<link rel="stylesheet" type="text/css" href="../assets/comun.css">
+<link rel="stylesheet" type="text/css" href="../assets/paginas.css"> 
+
+<div class="jumbotron">
+    <div class="container">
+        <table class="table table-sm">
+            <thead>
+                <tr>
+                      {%for f in fim%}
+                      {%if    f.dataVenci <   f.hoje and f.descricao == "Pago" %}
+                     <div class="alert alert-primary" role="alert">
+                       Contrato finalizado dia : {{f.vencimento}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    <a href="http://localhost/SisAcad2.0/dashboard/fimMatricula&id={{f.cliente}}" class="btn btn-info" role="button">Encerar contrato</a>
+                      </div>
+                    {%elseif  f.dataVenci <   f.hoje and f.descricao == "Aberto" %}
+                       <div class="alert alert-danger" role="alert">
+                       CLIENTE INADIPLENTE
+                         <input type="hidden" class="form-control" id="inputCity" name="id" value="{{id}}">
+                       </div>
+                    {% endif %}
+                    
+                    {%endfor%}
+                    <th class="table-light"></th>
+                    <th class="table-light"></th>
+                    <th  class="table-light">Cliente : {{nome}}</th>
+
+                    <th   class="table-light">Plano : {{plano}}  ->  R$ {{valor}}</th>
+
+                    <th class="table-light">Valor Mensalidade : R$ {{mensalidade}}</th>
+                    <th class="table-light"></th>
+                    <th class="table-light"></th>
+                        <th class="table-light"></th>
+                    
+                     
+                </tr>
+                <tr>
+                    <th class="table-warning">N°Parcelas</th>
+                    <th   class="table-warning">Valor mensalidade </th>
+                    <th   class="table-warning">Valor Pago</th>
+                     <th   class="table-warning">Forma de Pagamento</th>                  
+                    <th   class="table-warning">Vencimento</th>  
+                      <th   class="table-warning">Data do Pagamento</th>
+                    <th  class="table-warning">Situação</th>   
+                    <th  class="table-warning">Ação</th>   
+                          
+                </tr>
+            </thead>
+            <tbody>
+                {%for c in cliente%}
+                <tr>    
+                    <td>{{c.parc}}</td>                           
+                    <td  >{{c.valorParcelas}}</td>            
+                    <td  >{{c.valorPago}}</td>
+                     <td >{{c.descricao}}</td>                  
+                    <td >{{c.dn}}</td>  
+                     <td >{{c.dataPag}}</td>
+                    <td >{{c.situacao}}</td>
+               {% if c.situacao == "Aberto" and c.dataVenci >= c.hoje %} 
+                    <td>                  
+                        <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter" data-id="{{c.parc}}"><i class="icofont-credit-card"></i></button>
+                    </td> 
+                    {% elseif  c.situacao == "Aberto" and c.dataVenci < c.hoje   %}
+                    <td>                  
+                        <button type="submit" class="btn btn-danger" data-toggle="modal" data-target="#exampleModalCenter" data-id="{{c.parc}}"><i class="icofont-close-squared-alt"></i></button>              
+                    </td>       
+                    {%else%}
+                    <td>  
+                        <button type="button" class="btn btn-success" disabled><i class="icofont-checked"></i></button>
+                    </td>     
+                    {% endif %}
+                    {%endfor%}
+                </tr>
+            </tbody>
+        </table>
+
+        <button type="button" class="btn btn-outline-secondary btn-block" data-toggle="collapse" data-target="#demo">Modalidades</button>
+
+        <div id="demo" class="collapse">
+           
+            <table class="table table-sm">
+                <thead>
+                  
+                </thead>
+                <tbody>
+                      {%for d in modal%}
+                    <tr>   
+                        <td>{{d.descriModalidade}}</td>
+                        <td>R$: {{d.valorModalidade}}</td>  
+                    </tr>
+                      {%endfor%}
+                </tbody>
+            </table>
+        </div>
+ 
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Mensalidade</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <h3>Forma e dia de Pagamento</h3>  
+                        <form class="form-inline" action="http://localhost/SisAcad2.0/dashboard/cadPag" method="post">
+                            <div class="form-group col-md-3">   
+                                <select class="custom-select my-1 mr-sm-2" name="pag" id="inlineFormCustomSelectPref" required >
+                                    <option value="5">Dinheiro</option>
+                                    <option value="6">Cartão</option>
+                                </select>
+                            </div>
+                            <div>
+                                <div class="input-group-prepend">
+                                    <div class="input-group-prepend">
+                                        <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" name="mensal" value="{{mensalidade}}">
+                                        <input type="date" class="form-control" id="inputPassword4" name='data' required="required" >
+                                       
+                                        <input type="hidden" class="form-control" name="forma" id="id">
+                                        <input type="hidden" class="form-control" id="inputCity" name="id" value="{{id}}">
+                                        <input type="hidden" class="form-control" id="inputCity" name="usuario" value="{{id_user}}">
+
+                                    </div> 
+                                </div>
+                            </div>                           
+                    </div>  
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Voltar</button>
+                        <button type="submit" class="btn btn-primary">Salvar Pagamento</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $('#exampleModalCenter').on('show.bs.modal', function (event) {                                                       
+        var button = $(event.relatedTarget) // Button that triggered the modal
+        var recipientId    = button.data('id')                                                                 
+        var modal = $(this)
+        modal.find('#id').val(recipientId)  
+     
+    })
+ 
+  </script>

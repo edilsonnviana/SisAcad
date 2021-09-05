@@ -1,0 +1,202 @@
+{{ include('admin.html', sandboxed = true) }}
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" type="text/css" href="../assets/icofont.min.css">
+<link rel="stylesheet" type="text/css" href="../assets/comun.css">
+<link rel="stylesheet" type="text/css" href="../assets/paginas.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="assets/icofont.min.css">
+<!-- !PAGE CONTENT! -->
+<div class="w3-main" style="margin-left:10px;margin-top:10px;">
+</div>
+<!-- Header -->
+<header class="w3-container" style="padding-top:22px">
+    <h5><b><i class="icofont-dashboard-web w3-text-blue w3-xxlarge"></i></b></h5>
+</header>
+
+<div class="w3-row-padding w3-margin-bottom">
+    <div class="w3-quarter">
+        <div class="w3-container w3-orange w3-text-white w3-padding-16">
+            <div class="w3-left"><i class="fa fa-users w3-xxxlarge"></i></div>
+            <div class="w3-right">
+                <h3>{%for d in qnt%}
+                    {{d.cliente}}
+                    {%endfor%}</h3>
+            </div>
+            <div class="w3-clear"></div>
+            <h5>Matriculadas Ativas</h5>
+        </div>
+    </div>
+    <div class="w3-quarter">
+        <div class="w3-container w3-blue w3-padding-16">
+            <div class="w3-left"><i class="icofont-chart-bar-graph w3-xxxlarge"></i></div>
+            <div class="w3-right">
+                <h3>R$: {%for d in qnt%}
+                    {{d.total}}
+                    {%endfor%}</h3>
+            </div>
+            <div class="w3-clear"></div>
+            <h5>Faturamento matriculas ativas</h5>
+        </div>
+    </div>
+    <div class="w3-quarter">
+        <div class="w3-container w3-teal w3-padding-16">
+            <div class="w3-left"><i class="icofont-money w3-xxxlarge"></i></div>
+            <div class="w3-right">
+                <h3>R$: {%for f in fat%}
+                    {{f.total}}
+                    {%endfor%}</h3>
+            </div>
+            <div class="w3-clear"></div>
+            <h4>Faturamento total</h4>
+        </div>
+    </div>
+
+    <div class="w3-quarter">
+        <div class="w3-container w3-red w3-padding-16">
+            <div class="w3-left"><i class="icofont-chart-histogram-alt w3-xxxlarge"></i></div>
+            <div class="w3-right">
+                <h3>R$: {%for f in fat%}
+                    {{f.previsto}}
+                    {%endfor%}</h3>
+            </div>
+            <div class="w3-clear"></div>
+            <h4>Faturamento futuro</h4>
+        </div>
+    </div>
+
+</div>
+
+<div class="w3-panel">
+    <div class="w3-row-padding" style="margin:0 -16px">
+        <div class="w3-third">
+            <h5>Baixar Dados Excel</h5>
+            Base faturamento   <a href="http:/SisAcad2.0/admin/gerar" ><button  type="button" class="btn btn-outline-warning btn-block"><i class="icofont-inbox w3-xxxlarge"></i></button></a>
+
+            <hr>
+
+            Base caixa   <a href="http:/SisAcad2.0/admin/gerarDadosCaixa" ><button  type="button" class="btn btn-outline-secondary btn-block"><i class="icofont-inbox w3-xxxlarge"></i></button></a>
+        </div>
+        <div class="w3-twothird">
+            <h5>Modalidades mais Vendidas</h5>
+            <table class="w3-table w3-striped w3-white">
+                <tr>
+                    <th></th>
+                    <th>Modalidades</th>
+                    <th>Qnt de Matriculas</th>
+                </tr>
+                {%for m in modal%}
+                <tr>
+                    <td><i class="icofont-circled-up w3-text-blue w3-large"></i></td>
+
+                    <td>{{m.descriModalidade}}</td>
+                    <td><i>{{m.qtd}}</i></td>
+
+                </tr>
+                {%endfor%}
+
+
+            </table>
+            <h5>Planos mais Vendidos</h5>
+            <table class="w3-table w3-striped w3-white">
+                <tr>
+                    <th></th>
+                    <th>Planos</th>
+                    <th>Qnt de vendas</th>
+                </tr>
+                {%for p in plano%}
+                <tr>
+                    <td><i class="icofont-caret-up w3-text-blue w3-large"></i></td>
+
+                    <td>{{p.descricao}}</td>
+                    <td><i>{{p.qtd}}</i></td>
+
+                </tr>
+                {%endfor%}
+
+
+            </table>
+        </div>
+    </div>
+</div>
+<hr>
+<div class="w3-container">
+    <h5>Formas de Pagamento em % </h5>
+    {%for t in tipo %}
+    {% if t.forma == 5 %}
+    <p>{{t.descricao}}</p>
+    <div class="w3-grey">
+        <div class="w3-container w3-center w3-padding w3-blue" style="width:{{t.Porcento}}%">{{t.Porcento}}%</div>
+    </div>
+    {%else%}
+     <p>{{t.descricao}}</p>
+    <div class="w3-grey">
+        <div class="w3-container w3-center w3-padding w3-yellow" style="width:{{t.Porcento}}%">{{t.Porcento}}%</div>
+    </div>
+     {%endif%}
+    {%endfor%}    
+</div>
+<hr>
+
+<div class="w3-container">
+    <h5>Clientes Inadiplentes</h5>
+    <table class="w3-table w3-striped w3-bordered w3-border w3-hoverable w3-white">
+        {%for d in deve%}  
+
+        <tr>
+            <td>{{d.nomeUsuario}}</td>
+            <td>R$:{{d.valorParcelas}}</td>
+            <td><a href="http://localhost/SisAcad2.0/dashboard/telaParcelas&id={{d.idusuario}}" class="btn btn-warning" role="button">Faturas</a>
+                <a href="http://localhost/SisAcad2.0/dashboard/telaEditCliente&id={{d.idusuario}}" class="btn btn-success" role="button">Acessar</a>
+            </td>
+        </tr>
+        {% else %}
+        <div class="alert alert-success" role="alert">
+            Não ha clientes Inadiplentes !
+
+        </div>
+        {%endfor%} 
+
+    </table><br>
+
+    <hr>
+
+
+    <br>
+
+
+    <!-- Footer -->
+
+
+    <!-- End page content -->
+</div>
+
+<script>
+// Get the Sidebar
+    var mySidebar = document.getElementById("mySidebar");
+
+// Get the DIV with overlay effect
+    var overlayBg = document.getElementById("myOverlay");
+
+// Toggle between showing and hiding the sidebar, and add overlay effect
+    function w3_open() {
+        if (mySidebar.style.display === 'block') {
+            mySidebar.style.display = 'none';
+            overlayBg.style.display = "none";
+        } else {
+            mySidebar.style.display = 'block';
+            overlayBg.style.display = "block";
+        }
+    }
+
+// Close the sidebar with the close button
+    function w3_close() {
+        mySidebar.style.display = "none";
+        overlayBg.style.display = "none";
+    }
+</script>
+
+</body>
+</html>
+
+

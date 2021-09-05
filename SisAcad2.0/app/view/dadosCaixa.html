@@ -1,0 +1,38 @@
+ 
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">id</th>
+                    <th scope="col">Atendente</th>
+                    <th scope="col">Cliente</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Modalidade</th>
+                    <th scope="col">Plano</th>
+                    <th scope="col">Matricula</th>
+                
+                </tr>
+            </thead>
+            <tbody>
+                {%for d in caixa%}
+                 <tr>
+                    <td>{{d.idusuario}}</td>
+                    <td>{{d.atendente}}</td>
+                    <td>{{d.cliente}}</td>
+                    <td>{{d.email}}</td>
+                    <td>{{d.modalidade}}</td>
+                    <td>{{d.plano}}</td>
+                    <td>{{d.matricula}}</td>
+               
+                </tr>
+                {%endfor%}
+            </tbody>
+        </table>
+    </body>
+</html>

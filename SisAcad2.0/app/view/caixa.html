@@ -1,0 +1,55 @@
+{{ include('dashboard.html', sandboxed = true) }}
+<link rel="stylesheet" type="text/css" href="../assets/icofont.min.css">
+<link rel="stylesheet" type="text/css" href="../assets/comun.css">
+<link rel="stylesheet" type="text/css" href="../assets/paginas.css">
+<script src="https://code.jquery.com/jquery-3.1.1.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.quicksearch/2.3.1/jquery.quicksearch.js"></script>
+
+<form>
+    <div class="container">
+        <table id="tabela" class="table table-dark table-hover">
+            <h2>Caixa</h2>
+            <input name="consulta" id="txt_consulta" placeholder="Consultar" type="text" class="form-control">
+            <div class="form-group input-group">
+            </div>
+
+         
+            <thead class="thead-light">
+                <tr>
+                    <th>Usuario</th>
+                    <th>E-mail</th>
+                    <th>Cliente</th>
+                  
+                    <th colspan="2">Ação</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+   {%for c in caixa%}
+                <tr>
+                    <td>{{c.login}}</td>
+                    <td>{{c.email}}</td>
+                    <td>{{c.nomeUsuario}}</td>
+                            
+                    <td> <a href="http://localhost/SisAcad2.0/dashboard/telaAcesso&id={{c.idusuario}}" class="btn btn-info" role="button">Acessar</a>
+                        
+                         
+                    </td>
+                    </td>
+                </tr>
+                {% else %}
+            <div class="alert alert-danger" role="alert">
+                Não ha clientes no caixa !
+              
+            </div>
+            {%endfor%}
+            <tr>
+                </tbody>
+        </table>
+    </div>
+</form>
+<script>
+    $('input#txt_consulta').quicksearch('table#tabela tbody tr');
+
+</script>

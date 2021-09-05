@@ -1,0 +1,140 @@
+{{ include('dashboard.html', sandboxed = true) }}
+<link rel="stylesheet" type="text/css" href="../assets/icofont.min.css">
+<link rel="stylesheet" type="text/css" href="../assets/comun.css">
+<link rel="stylesheet" type="text/css" href="../assets/paginas.css">
+<script src="https://code.jquery.com/jquery-3.1.1.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.quicksearch/2.3.1/jquery.quicksearch.js"></script>
+
+
+<div class="container">
+    <div class="jumbotron">
+        <h2>{{nome}}</h2>
+
+        <div class="accordion" id="accordionExample">
+            <div class="card">
+                <div class="card-header" id="headingOne">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            Planos Finalizados / Ativos
+                        </button>
+                    </h5>
+                </div>
+
+                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                    <div class="card-body">
+                        <table class="table">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col">Planos</th>
+                                    <th scope="col">Status</th>
+                                    <th scope="col">Inicio</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {%for p in planos%}
+                                {%if p.statusMatricula == 3%}
+                                <tr>                                    
+                                    <td class="table-success">{{p.plano}}</td>
+                                    <td class="table-success">{{p.descricao}}</td>  
+                                    <td class="table-success">{{p.inicio}}</td> 
+                                </tr>
+                                {%else%}
+                                <tr>                                    
+                                    <td class="table-warning">{{p.plano}}</td>
+                                    <td class="table-warning">{{p.descricao}}</td>  
+                                    <td class="table-warning" >{{p.inicio}}</td> 
+                                </tr>
+                                {%endif%}
+                                {%endfor%}  
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header" id="headingTwo">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            Detalhamento de Faturas 
+                        </button>
+                    </h5>
+                </div>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                    <div class="card-body">
+                        <table class="table">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col">Inicio</th>
+                                    <th scope="col">Valor Pago</th>
+                                    <th scope="col">Status Contrato</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    {%for h in historicoPag%}
+                                    {%if h.statusMatricula == 3 %}
+                                    <td class="table-success">{{h.inicio}}</td>
+                                    <td class="table-success">{{h.valorPago}}</td>  
+                                    <td class="table-success">{{h.final}}</td>  
+                                </tr>
+                                {%else%}
+                                <tr>
+                                    <td class="table-warning"  >{{h.inicio}}</td>
+                                    <td class="table-warning"  >{{h.valorPago}}</td>
+                                    <td class="table-warning" >{{h.final}}</td>  
+                                </tr>
+                                {%endif%}
+                                {%endfor%}  
+                                <tr>
+                                    <th>
+                                        Valores pagos em contratos finalizados   : 
+                                    </th>                                   
+                                </tr>
+                                <tr>
+                                    {%for v in valores%}
+                                    {%if v.statusMatricula == 3 %}
+                                    <td class="table-success">
+                                        R$:{{v.valores}}
+                                    </td>
+                                </tr>  
+                                {%endif%}
+                                {%endfor%}                                 
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header" id="headingThree">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            Modalidades Realizadas
+                        </button>
+                    </h5>
+                </div>
+                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                    <div class="card-body">
+                    <table class="table">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">Modalidades</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {%for m in modal%}
+                            <tr>                                    
+                                <td class="table-success">{{m.descriModalidade}}</td>
+
+                            </tr>
+                            {%endfor%}  
+                        </tbody>
+                    </table>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>

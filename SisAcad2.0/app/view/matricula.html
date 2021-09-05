@@ -1,0 +1,77 @@
+{{ include('dashboard.html', sandboxed = true) }}
+<link rel="stylesheet" type="text/css" href="../assets/icofont.min.css">
+<link rel="stylesheet" type="text/css" href="../assets/comun.css">
+<link rel="stylesheet" type="text/css" href="../assets/paginas.css"> 
+<div class="jumbotron">
+
+
+    <form action="http://localhost/SisAcad2.0/dashboard/cadMatricula" method="post">
+        <div class="row">
+            <div class="col-sm-8">
+                <div class="form-group col-md-4">
+                    <h2>  <div class="col-sm-4"><span class="badge badge-secondary">{{nome}}</span></div></h2>
+                </div>
+                <hr>
+            </div>
+            <div class="col-sm-4"> </div>
+        </div>
+        <div class="row">
+            <div class="col-sm">
+                <label for="exampleFormControlSelect1">Modalidades</label>
+                {% for  m in modalidades%}
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="modal[]" value="{{m.idmodalidades}}" id="defaultCheck1" />
+                    <label class="form-check-label" for="defaultCheck1">
+                        {{m.descriModalidade}}                    
+                    </label>
+                    <label class="form-check-label" for="defaultCheck1">
+                        &nbsp&nbsp&nbsp{{m.valorModalidade}}                      
+                    </label>
+                </div>
+                {%endfor%}
+            </div>
+            <div class="col-sm">
+                <label for="sel1">Plano</label>
+
+                <select class="form-control" id="sel1" name="pl">
+                    {% for p in planos %}
+                    <option value="{{p.idplano}}">{{p.descricao}}&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp  R$ {{p.valor}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-sm">
+                <label for="sel1">Modalidades Realizadas </label>
+                <table class="table table-striped">
+                    <tbody>
+                        {% for m in moda %}
+                        <tr>                          
+                            <td>                              
+                            {{m.descriModalidade}}                               
+                            </td>                        
+                        </tr>
+                        {% else %}
+                    <div class="alert alert-primary" role="alert">
+                      Seja bem vindo: {{nome}}
+
+                    </div>
+                    {%endfor%}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="form-group col-md-4">
+            <input type="hidden" class="form-control" id="inputCity" name="id" value="{{id}}">
+        </div>
+        <div class="form-group col-md-4">
+            <input type="hidden" class="form-control" id="inputCity" name="usuario" value="{{idusuario}}">
+        </div>
+        <div class="form-row text-center">
+            <div class="col-12">
+                <button type="submit" class="btn btn-success">Matricular</button>
+            </div>
+        </div>
+    </form>   
+
+</div> 
+
+

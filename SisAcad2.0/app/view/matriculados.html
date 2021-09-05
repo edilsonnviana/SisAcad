@@ -1,0 +1,55 @@
+{{ include('admin.html', sandboxed = true) }}
+<link rel="stylesheet" type="text/css" href="../assets/icofont.min.css">
+<link rel="stylesheet" type="text/css" href="../assets/comun.css">
+<link rel="stylesheet" type="text/css" href="../assets/paginas.css">
+<script src="https://code.jquery.com/jquery-3.1.1.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.quicksearch/2.3.1/jquery.quicksearch.js"></script>
+
+<form >
+    <div class="container">
+        <div class="jumbotron">
+            <table  id="tabela" class="table table-dark table-hover">
+                <h2>Alunos Matriculados</h2>
+                <div class="form-group input-group">
+
+                    <input name="consulta" id="txt_consulta" placeholder="Consultar" type="text" class="form-control">
+                </div>
+
+                <thead class="thead-light">
+
+                    <tr> 
+                        <th>Usuario</th>
+                        <th>Cliente</th>
+                        <th>Data Nascimento</th>
+                        <th>Faturas</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    {%for m in matriculados%}
+                    <tr>
+                        <td>{{m.usuario}}</td>
+                        <td>{{m.cliente}}</td>
+                        <td>{{m.DN}}</td>
+
+                        <td><a href="http://localhost/SisAcad2.0/dashboard/telaParcelas&id={{m.id}}" class="btn btn-info" role="button">Acessar</a>
+                            <a href="http://localhost/SisAcad2.0/dashboard/telaEditCliente&id={{m.id}}" class="btn btn-warning" role="button">Edtar</a>
+                        
+                        </td>
+                    </tr>
+
+                    <tr>
+                        {% else %}
+                <div class="alert alert-danger" role="alert">
+                    Não ha clientes matriculados !
+                </div>
+                {%endfor%}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</form>
+<script>
+$('input#txt_consulta').quicksearch('table#tabela tbody tr');
+</script>

@@ -1,0 +1,35 @@
+{{ include('admin.html', sandboxed = true) }}
+<link rel="stylesheet" type="text/css" href="../assets/icofont.min.css">
+<link rel="stylesheet" type="text/css" href="../assets/comun.css">
+<link rel="stylesheet" type="text/css" href="../assets/paginas.css">
+<div class="jumbotron">
+    <div class="container">
+        <form class="form-inline" action="http://localhost/SisAcad2.0/admin/editarModalidade" method="post">
+            <div class="form-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Modalidade</span>
+                </div>
+                <input type="text" class="form-control" name="modalidade" value="{{nome}}" aria-label="Exemplo do tamanho do input" aria-describedby="inputGroup-sizing-default">
+            </div>
+            <div class="form-group">             
+                <div class="input-group-prepend ">
+                    <span class="input-group-text">R$</span>
+                </div>
+                <input type="number" class="form-control" name="valor" value="{{valor}}" aria-label="Quantia">
+                <div class="input-group-append">
+                    <span class="input-group-text">.00</span>
+                </div>
+                <div class="form-group col-md-4">
+
+                    <input type="hidden" class="form-control" id="inputCity" name="id" value="{{id}}">
+                </div>
+            </div>
+
+            <input type="submit" class="btn btn-info" value="Editar">
+
+        </form>
+    </div>
+</div>
+
+
+

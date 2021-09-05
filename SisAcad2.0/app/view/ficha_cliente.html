@@ -1,0 +1,101 @@
+{{ include('dashboard.html', sandboxed = true) }}
+<link rel="stylesheet" type="text/css" href="../assets/icofont.min.css">
+<link rel="stylesheet" type="text/css" href="../assets/comun.css">
+<link rel="stylesheet" type="text/css" href="../assets/paginas.css"> 
+<div class="jumbotron">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="row"  class="table-light">Cliente : {{nome}} </th>
+
+                <th scope="row"  class="table-light">Plano : {{plano}}</th>
+
+                <th scope="row"  class="table-light">Valor: R$ {{valor}}</th>
+                <td class="table-light"></td>
+                <td class="table-light"></td>
+                <td class="table-light"></td>
+            </tr>
+            <tr>
+                <th scope="col" class="table-warning">Data e Hora</th>
+                <th scope="col" class="table-warning">Modalidades</th>
+                <th scope="col" class="table-warning">valor </th>  
+
+                <th scope="col" class="table-warning">Status Modalidades </th>
+                <th scope="col" class="table-warning">Status Pagamento </th>
+                <th scope="col" class="table-warning">Operador</th>
+            </tr>
+        </thead>
+        <tbody>
+            {%for c in clientes%}
+            <tr>
+                <td class="table-info">{{c.dataHora}}</td>
+                <td class="table-info">{{c.Modalidades}}</td>
+                <td class="table-info">{{c.valorModalidade}}</td>
+                <td class="table-info"> {{c.Modalidade}} </td>              
+                <td class="table-info">{{c.mensalidade}}</td>
+                <td class="table-info">{{c.Usuario_Logado}}</td>   
+                {%endfor%}
+            <tr>
+        </tbody>
+    </table>
+
+</form>
+<button type="submit" class="btn btn-success" data-toggle="modal" data-target="#exampleModalCenter">Gerar Faturas</button>
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Mensalidade</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h3>Gerar Faturas </h3>
+                <form class="form-inline" action="http://localhost/SisAcad2.0/dashboard/Cadpagamento&id={{id}}" method="post">
+                    <div class="form-group col-md-3">   
+
+                    </div>
+                    <div>
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">Valor: R$</div>
+                            <div class="input-group-prepend">
+                                <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" name="mensal" value="{{nova}}">
+                            </div> 
+
+                            <input type="hidden" class="form-control" id="inputCity" name="id" value="{{id}}">
+                            <input type="hidden" class="form-control" id="inputCity" name="usuario" value="{{id_user}}">
+                            <input type="hidden" class="form-control" id="inputCity" name="nrParcelas" value="{{nrParcelas}}">
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="example-date-input" class="col-2 col-form-label">Data</label>
+
+                        <input class="form-control" type="date" value="" name="datapag" required="required">
+                    </div>
+                    <div class="form-group col-md-3">  
+                        <label for="example-date-input" class="col-2 col-form-label">Vencimento</label>
+                        <select class="custom-select my-1 mr-sm-2" name="dia" id="inlineFormCustomSelectPref" required >
+                            <option value="5">5</option>
+                            <option value="10">10</option>
+                            <option value="15">15</option>
+                            <option value="20">20</option>
+                            <option value="25">25</option>
+                        </select>
+                    </div>                          
+            </div>  
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Voltar</button>
+                <button type="submit" class="btn btn-primary">Salvar</button>
+            </div>
+            </form>  
+        </div>
+    </div>
+</div>
+
+</div>
+
+
+
+

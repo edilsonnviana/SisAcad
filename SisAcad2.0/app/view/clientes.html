@@ -1,0 +1,57 @@
+{{ include('dashboard.html', sandboxed = true) }}
+<link rel="stylesheet" type="text/css" href="../assets/icofont.min.css">
+<link rel="stylesheet" type="text/css" href="../assets/comun.css">
+<link rel="stylesheet" type="text/css" href="../assets/paginas.css"> 
+        <form >
+            <div class="container">
+
+                <table id="tabela" class="table table-dark table-hover">
+                    <h2>Clientes</h2>
+                    
+                     <input name="consulta" id="txt_consulta" placeholder="Consultar" type="text" class="form-control">
+                     <div class="form-group input-group">
+
+                    </div>
+                    <thead>
+                        <tr> 
+                            <th>Nome</th>
+                            <th>Cpf</th>
+                            <th>Telefone</th>
+                            <th>Email</th>
+                         <!--   <th>Endereço</th>-->
+                            
+                         <th colspan="2"> Ações</th>
+
+ 
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {%for c in clientes%}
+                        <tr>
+                            <td>{{c.nomeUsuario}}</td>
+                            <td>{{c.cpf}}</td>
+                            <td>{{c.telefone}}</td>
+                            <td>{{c.email}}</td>
+                         <!--   <td>{{c.endereco}}</td>-->
+                            <td>{{c.descricao}}</td>
+                            <td> <a href="http://localhost/SisAcad2.0/dashboard/telaEditCliente&id={{c.idusuario}}" class="btn btn-info" role="button">Edtar</a>
+                                <a href="http://localhost/SisAcad2.0/dashboard/telaMatricula&id={{c.idusuario}}" class="btn btn-success" role="button">Matricular</a></td>
+                                <!-- <a href="http://localhost/SisAcad2.0/admin/desabilitaFunc&id={{c.idusuario}}" class="btn btn-danger" role="button">Desabilitar</a>-->
+                        </tr>
+                                {% else %}
+            <div class="alert alert-danger" role="alert">
+                Não ha clientes para matricular!
+
+            </div>
+           
+                        {%endfor%}
+                    
+                    </tbody>
+                </table>
+            </div>
+        </form>
+        <script>
+$('input#txt_consulta').quicksearch('table#tabela tbody tr');
+        </script>
+
+

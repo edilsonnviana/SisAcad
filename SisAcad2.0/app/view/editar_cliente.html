@@ -1,0 +1,66 @@
+{{ include('dashboard.html', sandboxed = true) }}
+<link rel="stylesheet" type="text/css" href="../assets/icofont.min.css">
+<link rel="stylesheet" type="text/css" href="../assets/comun.css">
+<link rel="stylesheet" type="text/css" href="../assets/paginas.css">
+<div class="jumbotron">
+    <form action="http://localhost/SisAcad2.0/dashboard/editarCliente" method="post" >
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="inputEmail4">Nome</label>
+                <input type="text" class="form-control" id="inputEmail4" name="nome" value="{{nome}}">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="inputPassword4">Email</label>
+                <input type="text" class="form-control" id="inputPassword4" name="email" value="{{email}}">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="inputPassword4">Endereço</label>
+                <input type="text" class="form-control" id="inputPassword4" name="endereco" value="{{endereco}}">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="inputPassword4">Cpf</label>
+                <input type="text" class="form-control" id="inputCity" name="cpf" value="{{cpf}}">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="inputCity">Telefone Fixo</label>
+                <input type="number" class="form-control" id="inputCity" name="tel2" value="{{tel2}}">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="inputCity">Telefone</label>
+                <input type="text" class="form-control" id="inputCity" name="tel" value="{{tel}}">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="inputEstado">Sexo</label>
+                <select  id="inputEstado" class="form-control" name="sexo">
+                    <option selected name="sexo">{{sexo}}</option>
+                    <option name="sexo">Masculino</option>
+                    <option name="sexo">Feminino</option>
+                </select>
+            </div>
+            <div class="form-group col-md-4">
+                <label for="inputCity">Data de Nascimento</label>
+                <input type="text" class="form-control" id="inputCity" name="dtnasc" value="{{dtnasc}}">
+
+            </div>
+            <div class="form-group col-md-4">
+                <label for="inputCity">Gargo</label>
+                <input class="form-control" type="text" value="{{descricao}}" readonly>
+            </div>
+
+            <div class="form-group col-md-4">
+
+                <input type="hidden" class="form-control" id="inputCity" name="id" value="{{id}}">
+            </div>
+
+        </div>
+        <div class="form-row text-center">
+            <div class="col-12">
+                <button type="submit" class="btn btn-primary">Editar</button>
+            </div>
+        </div>
+    </form>
+</div> 
+
+
