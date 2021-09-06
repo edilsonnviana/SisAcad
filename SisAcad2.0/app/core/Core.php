@@ -1,4 +1,4 @@
-<?php
+ <?php
 
 class Core {
 
@@ -45,7 +45,7 @@ class Core {
             if (!isset($this->controller) || !in_array($this->controller, $pg_permission)) {
                 $this->controller = 'AdminController';
 
-                $this->method = '6_SistemaLogin';
+                $this->method = 'index';
             }
         } else {
             $pg_permission = ['LoginController'];
